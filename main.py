@@ -26,3 +26,13 @@ price = [str(price.getText().split("$")[1]) for price in find_price]
 current_price = 0
 for item in price:
     current_price = float(item)
+
+
+#PRODUCT NAME NEEDS TO BE MODIFIED (REMOVED UNNECESSARY NEWLINES) SO IT COULD BE USED IN THE CONTENT OF THE NOTIFICATION
+name_of_product = soup.find_all(name="span", class_="a-size-large product-title-word-break")
+
+product = ""
+for text in name_of_product:
+    product = text.getText()
+
+product_name = product.strip("\n")
