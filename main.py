@@ -36,3 +36,15 @@ for text in name_of_product:
     product = text.getText()
 
 product_name = product.strip("\n")
+
+
+#SEND EMAIL WHEN CURRENT PRICE OF THE PRODUCT IS BELOW TARGET PRICE
+if current_price < TARGET_PRICE:
+    with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
+        connection.starttls()
+        connection.login(MY_EMAIL, MY_PASSWORD)
+        connection.sendmail(from_addr=MY_EMAIL,
+                            to_addrs=RECIPIENT,
+                            msg=f"Subject:AMAZON PRICE ALERT {current_price}!\n\nHeads up!\n"
+                                f"{product_name} is now {current_price}!!!\n\n"
+                                f"{URL}")
