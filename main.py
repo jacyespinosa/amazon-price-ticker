@@ -19,3 +19,10 @@ webpage = response.text
 #SINCE THE HTML.PARSER DOESN'T WORK WITH AMAZON, LXML MUST BE USED INSTEAD.
 soup = BeautifulSoup(webpage, "lxml")
 find_price = soup.find_all(name="span", class_="a-size-medium a-color-price priceBlockBuyingPriceString")
+
+price = [str(price.getText().split("$")[1]) for price in find_price]
+
+#CHANGE INTO FLOATING POINT
+current_price = 0
+for item in price:
+    current_price = float(item)
